@@ -28,4 +28,10 @@ public class PokemonController {
     public void atualizaCapturado(@Valid @RequestBody PokemonCapturadoRequest pokemonCapturadoRequest) {
         service.atualizaCapturado(pokemonCapturadoRequest);
     }
+
+    @PutMapping("/visto")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void atualizaVisto(@Valid @RequestBody PokemonVistoRequest pokemonVistoRequest) {
+        service.atualizaVisto(pokemonVistoRequest);
+    }
 }

@@ -2,6 +2,7 @@ package com.example.pokedex.services;
 
 import com.example.pokedex.dtos.PokemonCapturadoRequest;
 import com.example.pokedex.dtos.PokemonVistoRequest;
+import com.example.pokedex.entities.Pokemon;
 import com.example.pokedex.repositories.PokemonRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DuplicateKeyException;
@@ -30,5 +31,17 @@ public class PokemonService {
             throw new EntityNotFoundException();
         }
         repository.save(map(pokemonCapturadoRequest));
+    }
+
+    public void atualizaVisto(PokemonVistoRequest pokemonVistoRequest) {
+        Pokemon pokemon = repository
+                .findById(pokemonVistoRequest.getNumero())
+                .orElseThrow(EntityNotFoundException::new);
+
+        pokemon.setNome(pokemonVistoRequest.getNome());
+        pokemon.setImagemUrl(pokemonVistoRequest.getImagemUrl());
+        pokemon.setHabitat(pokemonVistoRequest.getHabitat());
+
+        repository.save(pokemon);
     }
 }
