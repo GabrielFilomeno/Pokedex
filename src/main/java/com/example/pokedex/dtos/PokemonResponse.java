@@ -1,5 +1,6 @@
 package com.example.pokedex.dtos;
 
+import com.example.pokedex.enums.TipoEnum;
 import jakarta.persistence.Column;
 
 public class PokemonResponse {
@@ -8,7 +9,7 @@ public class PokemonResponse {
     private String nome;
     private String descricao;
     private String imagemUrl;
-    private String tipo;
+    private TipoEnum tipo;
     private String categoria;
     private String habitat;
     private Double altura;
@@ -47,11 +48,11 @@ public class PokemonResponse {
         this.imagemUrl = imagemUrl;
     }
 
-    public String getTipo() {
+    public TipoEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoEnum tipo) {
         this.tipo = tipo;
     }
 

@@ -1,9 +1,7 @@
 package com.example.pokedex.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.pokedex.enums.TipoEnum;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "pokemon")
@@ -21,7 +19,8 @@ public class Pokemon {
     @Column(nullable = false)
     private String imagemUrl;
 
-    private String tipo;
+    @Enumerated(value = EnumType.STRING)
+    private TipoEnum tipo;
     private String categoria;
 
     @Column(nullable = false)
@@ -63,11 +62,11 @@ public class Pokemon {
         this.imagemUrl = imagemUrl;
     }
 
-    public String getTipo() {
+    public TipoEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoEnum tipo) {
         this.tipo = tipo;
     }
 

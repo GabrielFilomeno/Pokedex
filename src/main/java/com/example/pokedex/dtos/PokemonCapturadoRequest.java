@@ -1,6 +1,6 @@
 package com.example.pokedex.dtos;
 
-import jakarta.persistence.Column;
+import com.example.pokedex.enums.TipoEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,8 +14,8 @@ public class PokemonCapturadoRequest {
     private String descricao;
     @NotBlank
     private String imagemUrl;
-    @NotBlank
-    private String tipo;
+    @NotNull
+    private TipoEnum tipo;
     @NotBlank
     private String categoria;
     @NotBlank
@@ -58,11 +58,11 @@ public class PokemonCapturadoRequest {
         this.imagemUrl = imagemUrl;
     }
 
-    public @NotBlank String getTipo() {
+    public TipoEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(@NotBlank String tipo) {
+    public void setTipo(TipoEnum tipo) {
         this.tipo = tipo;
     }
 
