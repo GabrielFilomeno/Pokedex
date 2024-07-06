@@ -1,6 +1,7 @@
 package com.example.pokedex.controllers;
 
 import com.example.pokedex.dtos.PokemonCapturadoRequest;
+import com.example.pokedex.dtos.PokemonResponse;
 import com.example.pokedex.dtos.PokemonVistoRequest;
 import com.example.pokedex.services.PokemonService;
 import jakarta.validation.Valid;
@@ -39,5 +40,11 @@ public class PokemonController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable(name= "id") Integer numero) {
         service.deletar(numero);
+    }
+
+    @GetMapping("/buscar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PokemonResponse buscar(@PathVariable(name = "id") Integer numero) {
+        return service.buscar(numero);
     }
 }

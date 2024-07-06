@@ -1,6 +1,7 @@
 package com.example.pokedex.services;
 
 import com.example.pokedex.dtos.PokemonCapturadoRequest;
+import com.example.pokedex.dtos.PokemonResponse;
 import com.example.pokedex.dtos.PokemonVistoRequest;
 import com.example.pokedex.entities.Pokemon;
 import com.example.pokedex.repositories.PokemonRepository;
@@ -51,5 +52,11 @@ public class PokemonService {
         } else {
             throw new EntityNotFoundException();
         }
+    }
+
+    public PokemonResponse buscar(Integer numero) {
+        Pokemon pokemon = repository.findById(numero).orElseThrow(EntityNotFoundException::new);
+
+        return map(pokemon);
     }
 }
