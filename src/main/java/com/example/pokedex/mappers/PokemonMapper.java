@@ -2,8 +2,14 @@ package com.example.pokedex.mappers;
 
 import com.example.pokedex.dtos.PokemonCapturadoRequest;
 import com.example.pokedex.dtos.PokemonResponse;
+import com.example.pokedex.dtos.PokemonSummary;
 import com.example.pokedex.dtos.PokemonVistoRequest;
 import com.example.pokedex.entities.Pokemon;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PokemonMapper {
 
@@ -55,6 +61,30 @@ public class PokemonMapper {
         target.setAltura(source.getAltura());
         target.setPeso(source.getPeso());
         target.setFoiCapturado(source.isFoiCapturado());
+
+        return target;
+    }
+
+    public static PokemonSummary mapToSummary(Pokemon source) {
+        if (source == null) return null;
+
+        PokemonSummary target = new PokemonSummary();
+
+        target.setNumero(source.getNumero());
+        target.setNome(source.getNome());
+        target.setFoiCapturado(source.isFoiCapturado());
+
+        return target;
+    }
+
+    public static List<PokemonSummary> mapToSummary(List<Pokemon> source) {
+        if (source == null) return Collections.emptyList();
+
+        List<PokemonSummary> target = new ArrayList<>();
+
+        for (Pokemon pokemon : source) {
+            target.add(mapToSummary(pokemon));
+        }
 
         return target;
     }

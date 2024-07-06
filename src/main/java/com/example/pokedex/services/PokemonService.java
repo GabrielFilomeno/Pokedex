@@ -2,6 +2,7 @@ package com.example.pokedex.services;
 
 import com.example.pokedex.dtos.PokemonCapturadoRequest;
 import com.example.pokedex.dtos.PokemonResponse;
+import com.example.pokedex.dtos.PokemonSummary;
 import com.example.pokedex.dtos.PokemonVistoRequest;
 import com.example.pokedex.entities.Pokemon;
 import com.example.pokedex.repositories.PokemonRepository;
@@ -9,7 +10,10 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.example.pokedex.mappers.PokemonMapper.map;
+import static com.example.pokedex.mappers.PokemonMapper.mapToSummary;
 
 @Service
 public class PokemonService {
@@ -58,5 +62,9 @@ public class PokemonService {
         Pokemon pokemon = repository.findById(numero).orElseThrow(EntityNotFoundException::new);
 
         return map(pokemon);
+    }
+
+    public List<PokemonSummary> listarPokemon() {
+        return mapToSummary(repository.findAll());
     }
 }
